@@ -1,0 +1,21 @@
+---
+  name: Hayaworld Packer VM Image Creation Jobs
+  on:
+    push:
+      branches:
+        - '**'
+    workflow_dispatch:
+  
+  jobs:
+    Validate:
+      runs-on: self-hosted
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+  
+        - name: Run Packer Validate
+          run: |
+            packer validate \
+              --var-file=./variables.json \
+              -var "vcenter_server_password=${{ secrets.VCSA_PASSWORD }}" \
+              ubuntu-22.04.json
