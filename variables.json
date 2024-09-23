@@ -1,4 +1,5 @@
 {
+  "builders": null,
   "datastore": "iscsi001",
   "disk_thin_provisioned": "true",
   "http_port_max": "8001",
@@ -8,12 +9,13 @@
   "iso_url": "https://ftp.iij.ad.jp/pub/linux/ubuntu/releases/22.04/ubuntu-22.04.5-live-server-amd64.iso",
   "network_mgmt_card": "vmxnet3",
   "network_mgmt_network": "VM Network",
+  "ssh_to": "192.168.1.102",
   "user_name": "hayato",
   "user_pass": "changeme",
+  "vcenter_server": "vcsa.hayaworld.home",
   "vcenter_server_cluster": "Cluster",
   "vcenter_server_password": "",
   "vcenter_server_username": "administrator@vsphere.local",
-  "vcenter_server": "vcsa.hayaworld.home",
   "vm_disk_size": "20480",
   "vm_memory_size": "2048",
   "vm_name": "origin"

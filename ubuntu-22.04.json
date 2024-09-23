@@ -28,6 +28,7 @@
       "ram": "{{ user `vm_memory_size` }}",
       "ssh_clear_authorized_keys": "true",
       "ssh_handshake_attempts": 500,
+      "ssh_host": "{{ user `ssh_to` }}",
       "ssh_password": "{{ user `user_pass` }}",
       "ssh_timeout": "60m",
       "ssh_username": "{{ user `user_name` }}",
