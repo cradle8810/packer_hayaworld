@@ -8,7 +8,7 @@
   "iso_url": "https://ftp.iij.ad.jp/pub/linux/ubuntu/releases/22.04/ubuntu-22.04.5-live-server-amd64.iso",
   "network_mgmt_card": "vmxnet3",
   "network_mgmt_network": "VM Network",
-  "user_name": "ubuntu",
+  "user_name": "hayato",
   "user_pass": "changeme",
   "vcenter_server_cluster": "Cluster",
   "vcenter_server_password": "",
