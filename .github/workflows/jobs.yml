@@ -1,10 +1,19 @@
 ---
-name: Hayaworld Packer VM Image Check
+name: Hayaworld Packer VM Image Creation Jobs
 on:
   push:
     branches:
       - '**'
   workflow_dispatch:
+    inputs:
+      vmname:
+        default: "origin"
+        description: 'VM name (overwrite VM if same name VM exists)'
+        required: true
+      deploy_confirm:
+        default: false
+        description: "Confirm to build"
+        type: boolean
 
 jobs:
   Validate:
@@ -26,3 +35,22 @@ jobs:
       - name: Run Packer Validate
         run: |
           ping -c 2 vcsa.hayaworld.home 
+
+  Build:
+    if: inputs.deploy_confirm == true
+    needs:
+      - Validate
+      - Is_vCSA_Active
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Run Packer Validate
+        run: |
+          packer build \
+            --var-file=./variables.json \
+            -var "vcenter_server_password=${{ secrets.VCSA_PASSWORD }}" \
+            -var "vm_name=${{ inputs.vmname }}" \
+            -force \
+            ubuntu-22.04.json
