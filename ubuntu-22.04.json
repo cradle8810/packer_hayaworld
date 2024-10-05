@@ -12,6 +12,7 @@
       "boot_wait": "5s",
       "cluster": "{{ user `vcenter_server_cluster`}}",
       "datastore": "{{ user `datastore`}}",
+      "guest_os_type": "ubuntu64Guest",
       "http_directory": "http",
       "http_port_max": "{{ user `http_port_max` }}",
       "http_port_min": "{{ user `http_port_min` }}",
@@ -45,3 +46,4 @@
     }
   ]
 }
+
