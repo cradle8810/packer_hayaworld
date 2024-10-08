@@ -10,6 +10,14 @@ on:
         default: "origin"
         description: 'VM name (overwrite VM if same name VM exists)'
         required: true
+      OS_Type:
+        description: "Choose OS Type"
+        required: true
+        default: "server-22.04"
+        type: choice
+        options:
+          - "minimal-22.04"
+          - "server-22.04"
       deploy_confirm:
         default: false
         description: "Confirm to build"
@@ -45,12 +53,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Run Packer Validate
         run: |
           packer build \
-            --var-file=./variables.json \
+            --var-file=${{ inputs.OS_Type }}/variables.json \
             -var "vcenter_server_password=${{ secrets.VCSA_PASSWORD }}" \
             -var "vm_name=${{ inputs.vmname }}" \
             -force \
-            ubuntu-22.04.json
+            ${{ inputs.OS_Type }}/${{ inputs.OS_Type }}.json
