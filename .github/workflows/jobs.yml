@@ -77,7 +77,7 @@ jobs:
             ${{ matrix.id }}
 
   Build:
-    if: inputs.deploy_confirm == true
+    if: ${{ ( inputs.deploy_confirm == true ) && !cancelled() && !failure() }}
     needs:
       - Lint
       - Is_vCSA_Active
