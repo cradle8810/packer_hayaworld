@@ -1,5 +1,6 @@
 {
   "builders": null,
+  "cpus": "1",
   "datastore": "iscsi001",
   "disk_thin_provisioned": "true",
   "http_port_max": "8001",

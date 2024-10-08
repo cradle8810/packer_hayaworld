@@ -1,6 +1,7 @@
 {
   "builders": [
     {
+      "CPUs": "{{ user `cpus` }}",
       "boot_command": [
         "e<wait>",
         "<down><down><down>",
@@ -46,4 +47,3 @@
     }
   ]
 }
-
