@@ -61,11 +61,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Debug Show command
+        run: |
+          echo "packer build \
+                  --var-file="${{ inputs.OS_Type }}/variables.json" \
+                  -var "vm_name=${{ inputs.vmname }}" \
+                  -var "http_directory=${{ inputs.OS_Type }}/http/" \
+                  -force \
+                  ${{ inputs.OS_Type }}/${{ inputs.OS_Type }}.json"
+      
       - name: Run Packer Validate
         run: |
+          cd "${{ inputs.OS_Type }}"
           packer build \
-            --var-file=${{ inputs.OS_Type }}/variables.json \
+            --var-file="variables.json" \
             -var "vcenter_server_password=${{ secrets.VCSA_PASSWORD }}" \
             -var "vm_name=${{ inputs.vmname }}" \
             -force \
-            ${{ inputs.OS_Type }}/${{ inputs.OS_Type }}.json
+            ${{ inputs.OS_Type }}.json
