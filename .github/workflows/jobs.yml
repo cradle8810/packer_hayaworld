@@ -24,30 +24,62 @@ on:
         type: boolean
 
 jobs:
-  Validate:
+  Prepare:
     runs-on: self-hosted
+    outputs:
+      files: ${{ steps.changed_files.outputs.all_changed_and_modified_files }}
+      count: ${{ steps.changed_files.outputs.all_changed_and_modified_files_count }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get all changed playbook files
+        id: changed_files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            **/*.json
+          files_ignore: |
+            **/variable.json
+          json: true
+          matrix: true
+
+      - name: Debug
+        run:
+          echo "===== Files ====="
+          echo "${{ steps.changed_files.outputs.all_changed_and_modified_files }}"
+
+  Is_vCSA_Active:
+    runs-on: self-hosted
+    steps:
+      - name: Check if vcsa working
+        run: |
+          ping -c 2 vcsa.hayaworld.home
+
+  Lint:
+    if: needs.Prepare.outputs.count != '0'
+    runs-on: self-hosted
+    needs:
+      - Prepare
+    strategy:
+      matrix:
+        id: ${{ fromJSON(needs.Prepare.outputs.files) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Run Packer Validate
         run: |
+          DIRNAME=$(echo ${{ matrix.id }} | awk -F'/' '{print $1}')
           packer validate \
-            --var-file=./variables.json \
+            --var-file=${DIRNAME}/variables.json \
             -var "vcenter_server_password=${{ secrets.VCSA_PASSWORD }}" \
-            ubuntu-22.04.json
-
-  Is_vCSA_Active:
-    runs-on: self-hosted
-    steps:
-      - name: Run Packer Validate
-        run: |
-          ping -c 2 vcsa.hayaworld.home 
+            ${{ matrix.id }}
 
   Build:
     if: inputs.deploy_confirm == true
     needs:
-      - Validate
+      - Lint
       - Is_vCSA_Active
     runs-on: self-hosted
     steps:
