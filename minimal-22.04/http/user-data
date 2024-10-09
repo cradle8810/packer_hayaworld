@@ -19,7 +19,9 @@ autoinstall:
     install-server: true
     allow-pw: true
   packages:
+    - coreutils
     - open-vm-tools
+    - vim
   user-data:
     timezone: Asia/Tokyo
   network:
