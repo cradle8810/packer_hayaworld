@@ -20,6 +20,7 @@ autoinstall:
     allow-pw: true
   packages:
     - coreutils
+    - less
     - open-vm-tools
     - ufw
     - vim
