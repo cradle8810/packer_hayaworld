@@ -21,6 +21,7 @@ autoinstall:
   packages:
     - coreutils
     - open-vm-tools
+    - ufw
     - vim
   user-data:
     timezone: Asia/Tokyo
