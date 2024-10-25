@@ -1,0 +1,23 @@
+{
+  "builders": null,
+  "cpus": "2",
+  "datastore": "iscsi001",
+  "disk_thin_provisioned": "true",
+  "http_port_max": "8001",
+  "http_port_min": "8000",
+  "is_headless": "false",
+  "iso_checksum": "sha256:e240e4b801f7bb68c20d1356b60968ad0c33a41d00d828e74ceb3364a0317be9",
+  "iso_url": "https://ftp.iij.ad.jp/pub/linux/ubuntu/releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso",
+  "network_mgmt_card": "vmxnet3",
+  "network_mgmt_network": "VM Network",
+  "ssh_to": "192.168.1.102",
+  "user_name": "hayato",
+  "user_pass": "changeme",
+  "vcenter_server": "vcsa.hayaworld.home",
+  "vcenter_server_cluster": "Cluster",
+  "vcenter_server_password": "",
+  "vcenter_server_username": "administrator@vsphere.local",
+  "vm_disk_size": "20480",
+  "vm_memory_size": "2048",
+  "vm_name": "origin"
+}
