@@ -18,6 +18,7 @@ on:
         options:
           - "minimal-22.04"
           - "server-22.04"
+          - "minimal-24.10"
       deploy_confirm:
         default: false
         description: "Confirm to build"
@@ -39,6 +40,7 @@ jobs:
         file:
           - "minimal-22.04/minimal-22.04.json"
           - "server-22.04/server-22.04.json"
+          - "minimal-24.10/minimal-24.10.json"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
