@@ -1,0 +1,49 @@
+{
+  "builders": [
+    {
+      "CPUs": "{{ user `cpus` }}",
+      "boot_command": [
+        "e<wait>",
+        "<down><down><down>",
+        "<end><bs><bs><bs><bs><wait>",
+        "autoinstall ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ---<wait>",
+        "<f10><wait>"
+      ],
+      "boot_keygroup_interval": "50ms",
+      "boot_wait": "5s",
+      "cluster": "{{ user `vcenter_server_cluster`}}",
+      "datastore": "{{ user `datastore`}}",
+      "guest_os_type": "ubuntu64Guest",
+      "http_directory": "http",
+      "http_port_max": "{{ user `http_port_max` }}",
+      "http_port_min": "{{ user `http_port_min` }}",
+      "insecure_connection": true,
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_url": "{{ user `iso_url`}}",
+      "network_adapters": [
+        {
+          "network": "{{ user `network_mgmt_network` }}",
+          "network_card": "{{ user `network_mgmt_card` }}"
+        }
+      ],
+      "password": "{{ user `vcenter_server_password`}}",
+      "ram": "{{ user `vm_memory_size` }}",
+      "ssh_clear_authorized_keys": "true",
+      "ssh_handshake_attempts": 500,
+      "ssh_host": "{{ user `ssh_to` }}",
+      "ssh_password": "{{ user `user_pass` }}",
+      "ssh_timeout": "60m",
+      "ssh_username": "{{ user `user_name` }}",
+      "storage": [
+        {
+          "disk_size": "{{ user `vm_disk_size` }}",
+          "disk_thin_provisioned": "{{ user `disk_thin_provisioned` }}"
+        }
+      ],
+      "type": "vsphere-iso",
+      "username": "{{ user `vcenter_server_username`}}",
+      "vcenter_server": "{{ user `vcenter_server`}}",
+      "vm_name": "{{ user `vm_name` }}"
+    }
+  ]
+}
