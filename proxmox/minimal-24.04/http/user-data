@@ -7,7 +7,7 @@ autoinstall:
   identity:
     hostname: origin
     password: "$y$j9T$YFzNQUvmYoRf6QYN9W9mJ0$ZPPSODT7GPuw4ZflNW/KGB/55whDExwoUpUJZgrns88"
-    username: hayato
+    username: ansible
   locale: en_US.UTF-8
   storage:
     layout:

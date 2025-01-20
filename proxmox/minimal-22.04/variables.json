@@ -10,7 +10,7 @@
   "network_mgmt_model": "virtio",
   "network_mgmt_bridge": "vmbr0",
   "ssh_to": "192.168.1.102",
-  "user_name": "hayato",
+  "user_name": "ansible",
   "user_pass": "changeme",
   "proxmox_server": "https://nuc04.hayaworld.home:8006/api2/json",
   "proxmox_server_password": "",
