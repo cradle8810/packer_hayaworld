@@ -1,0 +1,58 @@
+{
+  "builders": [
+    {
+      "cores": "{{ user `cpus` }}",
+      "cpu_type": "{{ user `cpu_type` }}",
+      "boot_command": [
+        "e<wait>",
+        "<down><down><down>",
+        "<end><bs><bs><bs><bs><wait>",
+        "autoinstall ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ---<wait>",
+        "<f10><wait>"
+      ],
+      "boot_keygroup_interval": "50ms",
+      "boot_wait": "5s",
+      "http_directory": "http",
+      "http_port_max": "{{ user `http_port_max` }}",
+      "http_port_min": "{{ user `http_port_min` }}",
+      "insecure_skip_tls_verify": true,
+      "boot_iso": {
+        "iso_checksum": "{{ user `iso_checksum` }}",
+        "iso_url": "{{ user `iso_url`}}",
+        "iso_storage_pool": "local",
+        "type": "scsi"
+      },
+      "network_adapters": [
+        {
+          "bridge": "{{ user `network_mgmt_bridge` }}",
+          "model": "{{ user `network_mgmt_model` }}",
+          "firewall": false
+        }
+      ],
+      "password": "{{ user `proxmox_server_password`}}",
+      "memory": "{{ user `vm_memory_size` }}",
+      "ssh_clear_authorized_keys": "true",
+      "ssh_handshake_attempts": 500,
+      "ssh_host": "{{ user `ssh_to` }}",
+      "ssh_password": "{{ user `user_pass` }}",
+      "ssh_timeout": "60m",
+      "ssh_username": "{{ user `user_name` }}",
+      "disks": [
+        {
+          "type": "virtio",
+          "disk_size": "{{ user `vm_disk_size` }}",
+          "storage_pool": "{{ user `vm_disk_pool` }}",
+          "cache_mode": "none",
+          "format": "raw"
+        }
+      ],
+      "type": "proxmox-iso",
+      "username": "{{ user `proxmox_server_username`}}",
+      "proxmox_url": "{{ user `proxmox_server`}}",
+      "vm_name": "{{ user `vm_name` }}",
+      "os": "l26",
+      "node": "{{ user `node` }}",
+      "qemu_agent": true
+    }
+  ]
+}
