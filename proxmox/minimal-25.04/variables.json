@@ -1,0 +1,23 @@
+{
+  "builders": null,
+  "cpus": "4",
+  "cpu_type": "host",
+  "vm_disk_pool": "iscsi001",
+  "http_port_max": "8001",
+  "http_port_min": "8000",
+  "is_headless": "false",
+  "iso_checksum": "sha256:8b44046211118639c673335a80359f4b3f0d9e52c33fe61c59072b1b61bdecc5",
+  "iso_url": "https://ftp.iij.ad.jp/pub/linux/ubuntu/releases/25.04/ubuntu-25.04-live-server-amd64.iso",
+  "network_mgmt_model": "virtio",
+  "network_mgmt_bridge": "vmbr0",
+  "ssh_to": "192.168.1.102",
+  "user_name": "ansible",
+  "user_pass": "changeme",
+  "proxmox_server": "https://nuc04.hayaworld.home:8006/api2/json",
+  "proxmox_server_password": "",
+  "proxmox_server_username": "root@pam",
+  "vm_disk_size": "20G",
+  "vm_memory_size": "4096",
+  "vm_name": "origin-25.04",
+  "node": "nuc04"
+}
