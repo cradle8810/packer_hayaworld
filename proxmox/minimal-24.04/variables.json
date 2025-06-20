@@ -1,6 +1,7 @@
 {
   "builders": null,
   "cpus": "4",
+  "cpu_type": "host",
   "vm_disk_pool": "iscsi001",
   "http_port_max": "8001",
   "http_port_min": "8000",

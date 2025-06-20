@@ -2,6 +2,7 @@
   "builders": [
     {
       "cores": "{{ user `cpus` }}",
+      "cpu_type": "{{ user `cpu_type` }}",
       "boot_command": [
         "e<wait>",
         "<down><down><down>",
