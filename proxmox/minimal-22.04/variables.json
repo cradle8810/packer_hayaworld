@@ -1,7 +1,7 @@
 {
   "builders": null,
   "cpus": "1",
-  "vm_disk_pool": "iscsi001",
+  "vm_disk_pool": "pskylark",
   "http_port_max": "8001",
   "http_port_min": "8000",
   "is_headless": "false",
