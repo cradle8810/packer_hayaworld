@@ -31,6 +31,7 @@
         }
       ],
       "password": "{{ user `proxmox_server_password`}}",
+      "machine": "q35",
       "memory": "{{ user `vm_memory_size` }}",
       "scsi_controller": "virtio-scsi-pci",
       "ssh_clear_authorized_keys": "true",

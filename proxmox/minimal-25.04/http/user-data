@@ -85,7 +85,7 @@ autoinstall:
     ethernets:
       nics:
         match:
-          name: "ens*"
+          name: "en*"
         addresses:
           - "192.168.1.102/24"
         nameservers:
