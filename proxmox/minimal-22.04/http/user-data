@@ -11,8 +11,6 @@ autoinstall:
   locale: en_US.UTF-8
   storage:
     version: 1
-    swap:
-      size: 2GB
     config:
       - id: disk0
         grub_device: true
