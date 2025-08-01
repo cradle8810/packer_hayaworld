@@ -10,9 +10,60 @@ autoinstall:
     username: ansible
   locale: en_US.UTF-8
   storage:
-    layout:
-      name: direct
-      reset-partition: true
+    version: 1
+    swap:
+      size: 2GB
+    config:
+      - id: disk0
+        grub_device: true
+        name: ''
+        ptable: msdos
+        reset-partition: true
+        type: disk
+      - id: disk0-partition1-boot
+        type: partition
+        number: 1
+        device: disk0
+        size: 2GB
+        flag: boot
+        preserve: false
+      - id: disk0-partition2-swap
+        type: partition
+        number: 2
+        device: disk0
+        size: 2GB
+        flag: swap
+        preserve: false
+      - id: disk0-partition3-root
+        type: partition
+        number: 3
+        device: disk0
+        size: -1
+      - id: disk0-format-boot
+        type: format
+        volume: disk0-partition1-boot
+        fstype: ext4
+      - id: disk0-format-swap
+        type: format
+        volume: disk0-partition2-swap
+        fstype: swap
+      - id: disk0-format-root
+        type: format
+        volume: disk0-partition3-root
+        fstype: btrfs
+      - id: disk0-mount-boot
+        type: mount
+        path: /boot
+        device: disk0-format-boot
+      - id: disk0-mount-swap
+        type: mount
+        path: none
+        device: disk0-format-swap
+      - id: disk0-mount-root
+        type: mount
+        path: /
+        options: "defaults,compress=zstd:1"
+        device: disk0-format-root
   keyboard:
     layout: us
   ssh:
@@ -20,10 +71,15 @@ autoinstall:
     allow-pw: true
   packages:
     - coreutils
+    - dstat
+    - htop
+    - language-pack-en
     - less
+    - locales-all
     - qemu-guest-agent
     - ufw
     - vim
+  updates: all
   user-data:
     timezone: Asia/Tokyo
   network:
@@ -43,3 +99,10 @@ autoinstall:
           - to: default
             via: 192.168.1.1
         dhcp4: false
+  late-commands:
+    - rm -fr /target/var/cache/apt
+    - mkdir -p /target/var/cache/apt
+    - echo "tmpfs /var/cache/apt tmpfs defaults 0 0" >> /target/etc/fstab
+    - curtin in-target -- systemctl enable ssh
+    - curtin in-target -- systemctl enable qemu-guest-agent
+    - fstrim -av

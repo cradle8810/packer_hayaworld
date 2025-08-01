@@ -16,6 +16,7 @@
       "http_port_max": "{{ user `http_port_max` }}",
       "http_port_min": "{{ user `http_port_min` }}",
       "insecure_skip_tls_verify": true,
+      "iso_storage_pool": "{{ user `iso_storage_pool` }}",
       "boot_iso": {
         "iso_checksum": "{{ user `iso_checksum` }}",
         "iso_url": "{{ user `iso_url`}}",
@@ -31,6 +32,7 @@
       ],
       "password": "{{ user `proxmox_server_password`}}",
       "memory": "{{ user `vm_memory_size` }}",
+      "scsi_controller": "virtio-scsi-pci",
       "ssh_clear_authorized_keys": "true",
       "ssh_handshake_attempts": 500,
       "ssh_host": "{{ user `ssh_to` }}",
@@ -42,9 +44,11 @@
           "type": "virtio",
           "disk_size": "{{ user `vm_disk_size` }}",
           "storage_pool": "{{ user `vm_disk_pool` }}",
-          "cache_mode": "none",
-          "format": "raw",
-          "storage_pool_type": "lvm"
+          "cache_mode": "writethrough",
+          "format": "qcow2",
+          "discard": true,
+          "asyncio": "threads",
+          "exclude_from_backup": true
         }
       ],
       "type": "proxmox-iso",
