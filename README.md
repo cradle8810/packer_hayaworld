@@ -5,12 +5,10 @@ You need install vsphere module with this command:
 packer plugins install github.com/hashicorp/vsphere
 ```
 
-For proxmox, use Proxmox module. But wait, the official module has regression bug.
-If you need to use `cpu_type` option, use the third-party forked module.
-To install it, type below. Use it carefully.
+For proxmox, use Proxmox module.
 
 ```
-packer plugins install github.com/badsectorlabs/proxmox v1.2.3
+packer plugins install github.com/hashicorp/proxmox v1.2.3
 ```
 
 ## Usage
