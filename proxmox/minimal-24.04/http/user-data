@@ -66,6 +66,8 @@ autoinstall:
     layout: us
   ssh:
     install-server: true
+    authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICdKiYDuuvDP+L0b4Jqfh5ezGBNghtCcIhAwRHx8BXQ8 hayato@HayabookAir2023.hayaworld.local
     allow-pw: true
   packages:
     - coreutils
@@ -87,16 +89,16 @@ autoinstall:
         match:
           name: "en*"
         addresses:
-          - "192.168.1.102/24"
+          - "192.168.88.102/24"
         nameservers:
           addresses:
-            - 192.168.1.100
-            - 192.168.1.150
+            - 8.8.8.8
+            - 4.4.4.4
           search:
             - "hayaworld.home"
         routes:
           - to: default
-            via: 192.168.1.1
+            via: 192.168.88.1
         dhcp4: false
   late-commands:
     - rm -fr /target/var/cache/apt

@@ -7,7 +7,7 @@
         "e<wait>",
         "<down><down><down>",
         "<end><bs><bs><bs><bs><wait>",
-        "ip=192.168.1.102::192.168.1.1:255.255.255.0::::8.8.8.8 ",
+        "ip=192.168.88.102::192.168.88.1:255.255.255.0::::8.8.8.8 ",
         "autoinstall ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ---<wait>",
         "<f10><wait>"
       ],
@@ -46,11 +46,7 @@
           "type": "virtio",
           "disk_size": "{{ user `vm_disk_size` }}",
           "storage_pool": "{{ user `vm_disk_pool` }}",
-          "cache_mode": "writethrough",
-          "format": "qcow2",
-          "discard": true,
-          "asyncio": "threads",
-          "exclude_from_backup": true
+          "discard": true
         }
       ],
       "type": "proxmox-iso",
